@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PEA Ideas Vote — โหวตไอเดียพัฒนาองค์กร</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&family=IBM+Plex+Sans+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@300;400;500;700&family=Google+Sans+Display&family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <!-- Firebase SDK -->
 <script type="module">
@@ -60,7 +60,7 @@
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body {
-  font-family: 'Sarabun','IBM Plex Sans Thai',sans-serif;
+  font-family: 'Google Sans','Sarabun',sans-serif;
   background: var(--bg); color: var(--text);
   min-height: 100vh; overflow-x: hidden;
 }
@@ -359,7 +359,7 @@ header {
 @media (max-width:640px) {
   .sidebar { display:none; }
   .cards-grid { grid-template-columns:1fr; }
-  .layout { height:calc(100vh - 128px - 56px); }
+  .layout { height:calc(100vh - 128px - 44px); }
   .main { padding:12px 14px 8px; }
 }
 
@@ -369,7 +369,7 @@ header {
   position:fixed; bottom:0; left:0; right:0; z-index:150;
   background:rgba(17,24,39,0.98); backdrop-filter:blur(12px);
   border-top:1px solid var(--border);
-  height:56px; padding:0 4px;
+  height:44px; padding:0 2px;
   flex-direction:row; align-items:stretch;
   overflow-x:auto; gap:0;
 }
@@ -378,7 +378,7 @@ header {
   flex:1; min-width:68px;
   display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2px;
   background:none; border:none; cursor:pointer; font-family:inherit;
-  padding:6px 4px; border-top:2px solid transparent;
+  padding:4px 2px; border-top:2px solid transparent;
   transition:all .15s; color:var(--muted);
 }
 .mobile-tab.active { color:var(--text); border-top-color:var(--gold); }
@@ -387,9 +387,9 @@ header {
 .mobile-tab.active.perm { border-top-color:var(--accent-perm); color:#34d399; }
 .mobile-tab.active.lot  { border-top-color:var(--accent-lot);  color:#fbbf24; }
 .mobile-tab-icon { font-size:16px; line-height:1; }
-.mobile-tab-label { font-size:10px; font-weight:500; white-space:nowrap; }
+.mobile-tab-label { font-size:9px; font-weight:500; white-space:nowrap; }
 .mobile-tab-count {
-  font-size:9px; background:rgba(255,255,255,0.1);
+  font-size:8px; background:rgba(255,255,255,0.1);
   padding:1px 5px; border-radius:8px; color:var(--muted);
 }
 
@@ -432,7 +432,7 @@ header {
 /* ── RESULTS PAGE ── */
 .results-page {
   display:none; flex-direction:column;
-  height:calc(100vh - 128px - 56px);
+  height:calc(100vh - 128px - 44px);
   overflow-y:auto; padding:14px 14px 8px;
   background:var(--bg);
 }
@@ -514,6 +514,73 @@ header {
 
 .no-votes-msg { text-align:center; padding:40px 20px; color:var(--muted); font-size:14px; }
 
+
+/* ── DASHBOARD PAGE ── */
+.dash-stats-row {
+  display:grid; grid-template-columns:1fr 1fr;
+  gap:8px; margin-bottom:14px;
+}
+.dash-stat-card {
+  padding:12px; border-radius:10px;
+  background:var(--surface); border:1px solid var(--border);
+  display:flex; flex-direction:column; gap:3px;
+}
+.dash-stat-val { font-size:26px; font-weight:800; color:var(--gold); line-height:1; }
+.dash-stat-label { font-size:11px; color:var(--muted); }
+.dash-stat-sub { font-size:10px; color:var(--muted); }
+
+.dash-top10-item {
+  display:flex; align-items:center; gap:10px;
+  padding:10px 12px; border-radius:10px; margin-bottom:5px;
+  background:var(--surface); border:1px solid var(--border);
+  cursor:pointer; transition:border-color .15s;
+}
+.dash-top10-item:hover { border-color:rgba(255,255,255,.15); }
+.dash-top10-rank { font-size:13px; font-weight:700; min-width:22px; text-align:center; color:var(--muted); }
+.dash-top10-info { flex:1; min-width:0; }
+.dash-top10-idea { font-size:12px; color:var(--text); line-height:1.4; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; margin-bottom:2px; }
+.dash-top10-sub { font-size:10px; color:var(--muted); }
+.dash-top10-votes { font-size:18px; font-weight:800; color:var(--gold); flex-shrink:0; }
+
+.dash-cluster-item {
+  display:flex; align-items:center; gap:10px;
+  padding:10px 12px; border-radius:10px; margin-bottom:5px;
+  background:var(--surface); border:1px solid var(--border);
+  cursor:pointer; transition:border-color .15s;
+}
+.dash-cluster-item:hover { border-color:rgba(255,255,255,.15); }
+.dash-cluster-info { flex:1; min-width:0; }
+.dash-cluster-name { font-size:12px; color:var(--text); font-weight:500; margin-bottom:3px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.dash-cluster-bar-wrap { height:4px; background:rgba(255,255,255,.06); border-radius:2px; }
+.dash-cluster-bar { height:100%; border-radius:2px; background:linear-gradient(90deg,var(--gold),#f97316); }
+.dash-cluster-right { display:flex; flex-direction:column; align-items:flex-end; gap:1px; flex-shrink:0; }
+.dash-cluster-count { font-size:11px; color:var(--muted); }
+.dash-cluster-votes { font-size:15px; font-weight:700; color:var(--gold); }
+
+/* ── ALL RESULTS PAGE ── */
+.allresult-item {
+  display:flex; align-items:center; gap:10px;
+  padding:12px; border-radius:10px; margin-bottom:6px;
+  background:var(--surface); border:1px solid var(--border);
+  cursor:pointer; transition:border-color .15s;
+}
+.allresult-item:hover { border-color:rgba(255,255,255,.15); }
+.allresult-item.has-votes { border-left:3px solid var(--gold); }
+.allresult-item.no-votes { opacity:.55; }
+.allresult-rank { font-size:13px; font-weight:700; color:var(--muted); min-width:28px; text-align:center; }
+.allresult-info { flex:1; min-width:0; }
+.allresult-idea { font-size:12px; color:var(--text); line-height:1.4; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; margin-bottom:3px; }
+.allresult-meta { font-size:10px; color:var(--muted); }
+.allresult-bar-wrap { height:3px; background:rgba(255,255,255,.05); border-radius:2px; margin-top:4px; }
+.allresult-bar { height:100%; border-radius:2px; }
+.allresult-right { display:flex; flex-direction:column; align-items:center; gap:1px; flex-shrink:0; min-width:36px; }
+.allresult-votes { font-size:18px; font-weight:800; color:var(--gold); line-height:1; }
+.allresult-votes.zero { color:var(--muted); font-size:14px; }
+.allresult-votes-lbl { font-size:9px; color:var(--muted); text-transform:uppercase; }
+.allresult-section-sep {
+  font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:.8px;
+  color:var(--muted); padding:10px 0 6px; border-top:1px solid var(--border); margin-top:4px;
+}
 </style>
 </head>
 <body>
@@ -662,7 +729,12 @@ header {
     <span class="mobile-tab-label">กลุ่มย่อย</span>
     <span class="mobile-tab-count" id="mobile-cluster-cnt">23</span>
   </button>
-  <button class="mobile-tab" id="mobile-result-tab" onclick="mobileTab('results',this)">
+  <button class="mobile-tab" id="mobile-dashboard-tab" onclick="mobileTab('dashboard',this)">
+    <span class="mobile-tab-icon">📊</span>
+    <span class="mobile-tab-label">ภาพรวม</span>
+    <span class="mobile-tab-count" id="mobile-dashboard-cnt">-</span>
+  </button>
+  <button class="mobile-tab" id="mobile-result-tab" onclick="mobileTab('allresults',this)">
     <span class="mobile-tab-icon">🏆</span>
     <span class="mobile-tab-label">ผลโหวต</span>
     <span class="mobile-tab-count" id="mobile-result-cnt">0</span>
@@ -690,6 +762,35 @@ header {
   </div>
   <div id="result-ideas-view"></div>
   <div id="result-clusters-view" style="display:none"></div>
+</div>
+
+
+<!-- DASHBOARD PAGE (mobile) -->
+<div class="results-page" id="dashboard-page">
+  <div class="results-header">
+    <h2>📊 ภาพรวมไอเดีย</h2>
+    <p id="dashboard-summary-text">ไอเดียทั้งหมด 183 รายการ</p>
+  </div>
+
+  <!-- Stats row -->
+  <div class="dash-stats-row" id="dash-stats-row"></div>
+
+  <!-- Top 10 voted -->
+  <div class="result-section-title" style="margin-top:4px">🔥 Top 10 ไอเดียที่ได้รับโหวตสูงสุด</div>
+  <div id="dash-top10"></div>
+
+  <!-- Ideas per cluster -->
+  <div class="result-section-title" style="margin-top:14px">📂 ไอเดียในแต่ละกลุ่มย่อย</div>
+  <div id="dash-cluster-breakdown"></div>
+</div>
+
+<!-- ALL RESULTS PAGE (mobile) -->
+<div class="results-page" id="allresults-page">
+  <div class="results-header">
+    <h2>🏆 ผลการโหวตทั้งหมด</h2>
+    <p id="allresults-summary-text">เรียงจากคะแนนมากไปน้อย</p>
+  </div>
+  <div id="allresults-list"></div>
 </div>
 
 <div class="panel-overlay" id="panel-overlay" onclick="closePanel()"></div>
@@ -917,7 +1018,7 @@ function renderFilteredCards(ideas) {
     const impactHtml = idea.impact ? `
       <div class="card-impact">
         <div class="card-impact-label">💥 Impact</div>
-        ${idea.impact.substring(0,110)}${idea.impact.length>110?'…':''}
+        ${idea.impact}
       </div>` : '';
     return `
     <div class="card ${tc}${voted?' voted-by-me':''}" onclick="openPanel(${idea.id})">
@@ -1016,13 +1117,15 @@ function updateStats() {
   });
   document.getElementById('stat-votes').textContent = total;
   document.getElementById('stat-voters').textContent = allVoters.size;
-  // Refresh results page if it is currently visible
-  if (document.getElementById('results-page').classList.contains('active')) {
-    renderResultsPage();
-  }
-  // Update result tab count badge
+  // Refresh whichever special page is active
+  if (document.getElementById('results-page')?.classList.contains('active')) renderResultsPage();
+  if (document.getElementById('dashboard-page')?.classList.contains('active')) renderDashboardPage();
+  if (document.getElementById('allresults-page')?.classList.contains('active')) renderAllResultsPage();
+  // Update badges
   const rCnt = document.getElementById('mobile-result-cnt');
   if (rCnt) rCnt.textContent = total;
+  const dCnt = document.getElementById('mobile-dashboard-cnt');
+  if (dCnt) dCnt.textContent = total > 0 ? total : '-';
 }
 
 // ─── VIEW ─────────────────────────────────────────────
@@ -1048,18 +1151,33 @@ function mobileTab(topic, btn) {
   btn.classList.add('active');
 
   const layout = document.querySelector('.layout');
-  const resultsPage = document.getElementById('results-page');
+  // Hide all special pages first
+  ['results-page','dashboard-page','allresults-page'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.classList.remove('active');
+  });
 
   if (topic === 'results') {
     layout.style.display = 'none';
-    resultsPage.classList.add('active');
+    document.getElementById('results-page').classList.add('active');
     renderResultsPage();
     return;
   }
+  if (topic === 'dashboard') {
+    layout.style.display = 'none';
+    document.getElementById('dashboard-page').classList.add('active');
+    renderDashboardPage();
+    return;
+  }
+  if (topic === 'allresults') {
+    layout.style.display = 'none';
+    document.getElementById('allresults-page').classList.add('active');
+    renderAllResultsPage();
+    return;
+  }
 
-  // Back to main layout
+  // Back to main layout (idea list)
   layout.style.display = '';
-  resultsPage.classList.remove('active');
 
   activeClusterFilter = null;
   activeTopicFilter = topic;
@@ -1264,6 +1382,165 @@ function renderResultsPage() {
     }
     clustersEl.innerHTML = html;
   }
+}
+
+// ─── DASHBOARD PAGE ──────────────────────────────────
+function renderDashboardPage() {
+  let totalVotes = 0; const allVoters = new Set();
+  Object.values(votes).forEach(vm => {
+    if (!vm) return;
+    Object.entries(vm).forEach(([k,v]) => { if(v){ totalVotes++; allVoters.add(k); } });
+  });
+  const votedIdeas = IDEAS_DATA.filter(i => getVoteCount(i.id) > 0).length;
+
+  document.getElementById('dashboard-summary-text').textContent =
+    `ไอเดียทั้งหมด 183 รายการ · โหวตแล้ว ${votedIdeas} ไอเดีย`;
+
+  // Stats row
+  document.getElementById('dash-stats-row').innerHTML = `
+    <div class="dash-stat-card">
+      <div class="dash-stat-val">183</div>
+      <div class="dash-stat-label">💡 ไอเดียทั้งหมด</div>
+      <div class="dash-stat-sub">จาก 4 หมวดหลัก</div>
+    </div>
+    <div class="dash-stat-card">
+      <div class="dash-stat-val">${totalVotes}</div>
+      <div class="dash-stat-label">🗳️ โหวตรวม</div>
+      <div class="dash-stat-sub">จาก ${allVoters.size} ผู้โหวต</div>
+    </div>
+    <div class="dash-stat-card">
+      <div class="dash-stat-val">${votedIdeas}</div>
+      <div class="dash-stat-label">✅ ไอเดียที่มีโหวต</div>
+      <div class="dash-stat-sub">${183 - votedIdeas} ยังไม่มีโหวต</div>
+    </div>
+    <div class="dash-stat-card">
+      <div class="dash-stat-val">23</div>
+      <div class="dash-stat-label">📂 กลุ่มย่อย</div>
+      <div class="dash-stat-sub">ครอบคลุม 4 หมวด</div>
+    </div>
+  `;
+
+  // Top 10
+  const rankMedals = { 0:'🥇', 1:'🥈', 2:'🥉' };
+  const rankColors = { 0:'#fbbf24', 1:'#94a3b8', 2:'#cd7c2f' };
+  const sorted = [...IDEAS_DATA]
+    .map(i => ({ ...i, vc: getVoteCount(i.id) }))
+    .sort((a,b) => b.vc - a.vc)
+    .slice(0, 10);
+
+  const top10El = document.getElementById('dash-top10');
+  if (sorted[0].vc === 0) {
+    top10El.innerHTML = '<div class="no-votes-msg" style="padding:20px">⏳ ยังไม่มีโหวต</div>';
+  } else {
+    top10El.innerHTML = sorted.map((idea, i) => {
+      const medal = rankMedals[i] || (i+1);
+      const col = rankColors[i] || 'var(--muted)';
+      return `<div class="dash-top10-item" onclick="openPanel(${idea.id})">
+        <div class="dash-top10-rank" style="color:${col}">${medal}</div>
+        <div class="dash-top10-info">
+          <div class="dash-top10-idea">${idea.idea.substring(0,90)}</div>
+          <div class="dash-top10-sub">${idea.cluster} · ${idea.name}</div>
+        </div>
+        <div class="dash-top10-votes">${idea.vc}</div>
+      </div>`;
+    }).join('');
+  }
+
+  // Cluster breakdown
+  const clusterData = {};
+  IDEAS_DATA.forEach(idea => {
+    if (!clusterData[idea.cluster]) clusterData[idea.cluster] = { count:0, votes:0 };
+    clusterData[idea.cluster].count++;
+    clusterData[idea.cluster].votes += getVoteCount(idea.id);
+  });
+  const sortedClusters = Object.entries(clusterData).sort((a,b) => b[1].count - a[1].count);
+  const maxCount = sortedClusters[0][1].count;
+  const breakdownEl = document.getElementById('dash-cluster-breakdown');
+  breakdownEl.innerHTML = sortedClusters.map(([cluster, data]) => {
+    const pct = Math.round((data.count / maxCount) * 100);
+    return `<div class="dash-cluster-item" onclick="mobileSelectCluster('${cluster.replace(/'/g,"\'")}')">
+      <div class="dash-cluster-info">
+        <div class="dash-cluster-name">${cluster}</div>
+        <div class="dash-cluster-bar-wrap">
+          <div class="dash-cluster-bar" style="width:${pct}%"></div>
+        </div>
+      </div>
+      <div class="dash-cluster-right">
+        <div class="dash-cluster-count">${data.count} ไอเดีย</div>
+        <div class="dash-cluster-votes">${data.votes > 0 ? data.votes + ' โหวต' : '-'}</div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ─── ALL RESULTS PAGE ─────────────────────────────────
+function renderAllResultsPage() {
+  let totalVotes = 0; const allVoters = new Set();
+  Object.values(votes).forEach(vm => {
+    if (!vm) return;
+    Object.entries(vm).forEach(([k,v]) => { if(v){ totalVotes++; allVoters.add(k); } });
+  });
+  document.getElementById('allresults-summary-text').textContent =
+    `${totalVotes} โหวตรวม · ${allVoters.size} ผู้โหวต · เรียงจากมากไปน้อย`;
+
+  const sorted = [...IDEAS_DATA]
+    .map(i => ({ ...i, vc: getVoteCount(i.id) }))
+    .sort((a,b) => b.vc - a.vc || a.id - b.id);
+
+  const maxVotes = sorted[0]?.vc || 1;
+  const rankMedals = { 0:'🥇', 1:'🥈', 2:'🥉' };
+  const tcColors = {rer:'#ef4444',sang:'#3b82f6',perm:'#10b981',lot:'#f59e0b','':'#a78bfa'};
+
+  let withVotes = sorted.filter(i => i.vc > 0);
+  let noVotes   = sorted.filter(i => i.vc === 0);
+
+  let html = '';
+  if (withVotes.length === 0) {
+    html = '<div class="no-votes-msg">⏳ ยังไม่มีการโหวต<br><span style="font-size:12px">รอทีมมาโหวตกันก่อนนะครับ</span></div>';
+  } else {
+    // Voted ideas
+    withVotes.forEach((idea, i) => {
+      const tc = topicClass(idea.topic);
+      const col = tcColors[tc] || '#a78bfa';
+      const pct = Math.round((idea.vc / maxVotes) * 100);
+      const medal = rankMedals[i] || '';
+      html += `<div class="allresult-item has-votes" onclick="openPanel(${idea.id})">
+        <div class="allresult-rank" style="color:${i<3?Object.values({'0':'#fbbf24','1':'#94a3b8','2':'#cd7c2f'})[i]:'var(--muted)'}">
+          ${medal || (i+1)}
+        </div>
+        <div class="allresult-info">
+          <div class="allresult-idea">${idea.idea.substring(0,100)}</div>
+          <div class="allresult-meta">${idea.cluster} · ${idea.name}</div>
+          <div class="allresult-bar-wrap">
+            <div class="allresult-bar" style="width:${pct}%;background:${col}aa"></div>
+          </div>
+        </div>
+        <div class="allresult-right">
+          <div class="allresult-votes">${idea.vc}</div>
+          <div class="allresult-votes-lbl">โหวต</div>
+        </div>
+      </div>`;
+    });
+
+    // No-vote ideas (collapsed section)
+    if (noVotes.length > 0) {
+      html += `<div class="allresult-section-sep">ยังไม่มีโหวต (${noVotes.length} ไอเดีย)</div>`;
+      noVotes.forEach((idea, i) => {
+        html += `<div class="allresult-item no-votes" onclick="openPanel(${idea.id})">
+          <div class="allresult-rank">${withVotes.length + i + 1}</div>
+          <div class="allresult-info">
+            <div class="allresult-idea">${idea.idea.substring(0,90)}</div>
+            <div class="allresult-meta">${idea.cluster} · ${idea.name}</div>
+          </div>
+          <div class="allresult-right">
+            <div class="allresult-votes zero">—</div>
+          </div>
+        </div>`;
+      });
+    }
+  }
+
+  document.getElementById('allresults-list').innerHTML = html;
 }
 
 </script>
